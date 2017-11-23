@@ -3,7 +3,7 @@ import CourseListRow from './CourseListRow';
 import PropTypes from 'prop-types';
 
 const CourseList = ({courses}) => {
-      debugger;
+
   return (
     <table className="table">
       <thead>
