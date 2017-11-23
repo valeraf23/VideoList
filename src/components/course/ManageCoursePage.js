@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
-import {Redirect} from 'react-router-dom';
+import {Redirect,Prompt} from 'react-router-dom';
 import {bindActionCreators} from 'redux';
 import * as courseActions from '../../actions/courseActions';
 import CourseForm from './CourseForm';
@@ -16,7 +16,8 @@ export class ManageCoursePage extends React.Component {
       course: Object.assign({}, this.props.course),
       errors: {},
       saving: false,
-      redirect: false
+      redirect: false,
+      dirty: false
     };
 
     this.saveCourse = this.saveCourse.bind(this);
@@ -34,7 +35,7 @@ export class ManageCoursePage extends React.Component {
     const field = event.target.name;
     let course = this.state.course;
     course[field] = event.target.value;
-    return this.setState({course: course});
+    return this.setState({course: course,dirty:true});
   }
 
   courseFormIsValid() {
@@ -67,7 +68,7 @@ export class ManageCoursePage extends React.Component {
   }
 
   redirect() {
-    this.setState({saving: false, redirect: true});
+    this.setState({saving: false, redirect: true,dirty:false});
     toastr.success('Course saved.');
   }
 
@@ -77,6 +78,8 @@ export class ManageCoursePage extends React.Component {
     }
 
     return (
+      <div>
+      <Prompt when={this.state.dirty} message={"You have unsaved changes." +"\n"+ "Are you sure?"}/>
       <CourseForm
         course={this.state.course}
         onChange={this.updateCourseState}
@@ -85,6 +88,7 @@ export class ManageCoursePage extends React.Component {
         allAuthors={this.props.authors}
         saving={this.state.saving}
       />
+      </div>
     );
   }
 }

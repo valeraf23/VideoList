@@ -11,7 +11,7 @@ const Header = ({loading}) => {
     <nav>
       <NavLink to="/" activeStyle={activeStyle} exact>Home</NavLink>
       {" | "}
-      <NavLink to="/courses" activeStyle={activeStyle}>Courses</NavLink>
+      <NavLink to="/courses" activeStyle={activeStyle}>Video List</NavLink>
       {" | "}
       <NavLink to="/about" activeStyle={activeStyle}>About</NavLink>
       {loading && <LoadingDots interval={100} dots={20}/>}

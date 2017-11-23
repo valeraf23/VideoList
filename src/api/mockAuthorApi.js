@@ -10,15 +10,15 @@ const authors = [
     lastName: 'House'
   },
   {
-    id: 'scott-allen',
-    firstName: 'Scott',
-    lastName: 'Allen'
-  },
-  {
-    id: 'dan-wahlin',
-    firstName: 'Dan',
-    lastName: 'Wahlin'
-  }
+  id: 'unknow',
+  firstName: 'Unknow',
+  lastName: 'author'
+},
+{
+  id: 'MrSuicideSheep',
+  firstName: 'Sheep',
+  lastName: 'Mr Suicide'
+},
 ];
 
 //This would be performed on the server in a real app. Just stubbing in.

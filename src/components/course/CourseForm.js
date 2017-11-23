@@ -30,6 +30,13 @@ const CourseForm = ({course, allAuthors, onSave, onChange, saving, errors}) => {
         error={errors.category}/>
 
       <TextInput
+          name="watchHref"
+          label="Url"
+          value={course.watchHref}
+          onChange={onChange}
+          error={errors.watchHref}/>
+
+      <TextInput
         name="length"
         label="Length"
         value={course.length}

@@ -6,8 +6,8 @@ class HomePage extends React.Component{
 render(){
   return (
     <div className ="jumbotron">
-      <h1>VF video courses List</h1>
-      <p>React, redux and Router in ES6 for ulta responsive web app.</p>
+      <h1>VF video List</h1>
+      <p>enjoy it...</p>
       <Link to="about" className="btn btn-primary btn-lg">Learn more</Link>
     </div>
    );
