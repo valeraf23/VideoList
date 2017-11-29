@@ -10,20 +10,12 @@ class CoursesPage extends React.Component{
   constructor(props,context){
     super(props,context);
      this.redirectToAddCoursePage = this.redirectToAddCoursePage.bind(this);
-    this.sortCoursesList = this.sortCoursesList.bind(this);
   }
 
 redirectToAddCoursePage() {
   debugger;
      this.props.history.push('/course');
   }
-
-sortCoursesList(list) {
-let newList = Object.assign([],list);
-newList.sort((a, b) => a.title.localeCompare(b.title));
-debugger;
-return newList;
-}
 
   render(){
     const {courses} = this.props;
@@ -35,7 +27,7 @@ return newList;
               value="Add Video"
               className="btn btn-primary"
               onClick={this.redirectToAddCoursePage}/>
-         <CourseList courses={this.sortCoursesList(courses)}/>
+         <CourseList courses={courses}/>
       </div>
     );
   }
@@ -46,10 +38,18 @@ CoursesPage.propTypes = {
   history: PropTypes.object.isRequired
 };
 
+function sortCoursesList(list) {
+let newList = Object.assign([],list);
+newList.sort((a, b) => a.title.localeCompare(b.title));
+debugger;
+return newList;
+}
+
+
 function mapStateToProps(state,ownProps){
 debugger;
   return {
-     courses:state.courses
+     courses: sortCoursesList(state.courses)
   };
 }
 
