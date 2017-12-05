@@ -1,18 +1,40 @@
 import React from 'react';
 import CourseListRow from './CourseListRow';
 import PropTypes from 'prop-types';
+import ArrowSort from '../common/ArrowSort';
 
-const CourseList = ({courses}) => {
-
+const CourseList = ({courses,sortByKey,sort}) => {
+debugger;
   return (
     <table className="table">
       <thead>
       <tr>
         <th>&nbsp;</th>
         <th>Title</th>
-        <th>Author</th>
-        <th>Category</th>
-        <th>Length</th>
+        <th>
+            <ArrowSort
+              sortByKey={sortByKey}
+              keyId={"authorId"}
+              sort={sort}
+              text={'Author'}
+              />
+        </th>
+        <th>
+            <ArrowSort
+              sortByKey={sortByKey}
+              keyId={"category"}
+              sort={sort}
+              text={'Category'}
+              />
+         </th>
+        <th>
+            <ArrowSort
+              sortByKey={sortByKey}
+              keyId={"length"}
+              sort={sort}
+              text={'Length'}
+              />
+        </th>
       </tr>
       </thead>
       <tbody>

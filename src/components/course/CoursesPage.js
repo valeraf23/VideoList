@@ -9,13 +9,57 @@ import CourseList from './CourseList';
 class CoursesPage extends React.Component{
   constructor(props,context){
     super(props,context);
-     this.redirectToAddCoursePage = this.redirectToAddCoursePage.bind(this);
+    this.state = {
+           sort: {
+               key: undefined,
+               // 0 - not ordering
+               // 1 - asc
+               // 2 - desc
+               order: 0
+           },
+       };
+    this.sortByKey = this.sortByKey.bind(this);
+    this.sortedData = this.sortedData.bind(this);
+    this.redirectToAddCoursePage = this.redirectToAddCoursePage.bind(this);
   }
 
 redirectToAddCoursePage() {
   debugger;
      this.props.history.push('/course');
   }
+
+  sortedData() {
+         const { key, order } = this.state.sort;
+
+         // Only sort if key is provided & order != 0.
+         if (key && order) {
+             // Comparison function for "asc" sorting.
+             function compare(a, b) {
+                 if (a[key] < b[key]) return -1;
+                 if (a[key] > b[key]) return 1;
+                 return 0;
+             }
+
+             // Attention! Sort mutates array, clone first.
+             return [...this.props.courses].sort((a, b) => {
+                 // Interesting part. Sort in "asc" order. Flip if want "desc" order!
+                 return compare(a, b) * (order === 1 ? 1 : -1);
+             });
+         }
+
+         // Return original data (order = 0)
+         return this.props.courses;
+     }
+     sortByKey(key) {
+            return () => {
+                const sort = (this.state.sort.key === key)
+                    // Key matches, update order
+                    ? { key, order: (this.state.sort.order ===1 ? 2: 1)}
+                    // Key differs, start with "asc" order
+                    : { key, order: 1 };
+                this.setState({ sort });
+            }
+        }
 
   render(){
     const {courses} = this.props;
@@ -27,7 +71,7 @@ redirectToAddCoursePage() {
               value="Add Video"
               className="btn btn-primary"
               onClick={this.redirectToAddCoursePage}/>
-         <CourseList courses={courses}/>
+         <CourseList courses={this.sortedData()} sortByKey={this.sortByKey} sort={this.state.sort}/>
       </div>
     );
   }
