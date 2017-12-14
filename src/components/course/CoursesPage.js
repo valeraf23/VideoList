@@ -107,15 +107,12 @@ redirectToAddCoursePage() {
         }
           getPageCount(courses){
             debugger;
+                const c=3;
                 let count = courses.length;
-                let a =  Math.floor(count/3);
-                let b  =count%3==0?0:1;
+                let a =  Math.floor(count/c);
+                let b  =count%c==0?0:1;
                    return a+b;
-
-
             };
-
-
 
   render(){
     return (
@@ -134,8 +131,10 @@ redirectToAddCoursePage() {
                       marginPagesDisplayed={1}
                       pageRangeDisplayed={3}
                       onPageChange={this.handlePageClick}
-                      containerClassName={"pagination"}
+                      containerClassName={  (this.state.views.totalPage == 1 ? "pagination hidden" : "pagination" )}
+
                       subContainerClassName={"pages pagination"}
+                      forcePage={0}
                       activeClassName={"active"} />
       </div>
     );
