@@ -8,10 +8,10 @@ import CourseList from './CourseList';
 import ReactPaginate from 'react-paginate';
 import {chunkify} from '../common/commonTools';
 
-
 class CoursesPage extends React.Component{
   constructor(props,context){
     super(props,context);
+      debugger;
     this.state = {
            sort: {
                key: undefined,
@@ -20,48 +20,50 @@ class CoursesPage extends React.Component{
                // 2 - desc
                order: 0
            },
-           pag:{
-              currentPage: 1,
-              d:this.props.courses
+           views:{
+              currentPage: 0,
+              totalPage:1
            }
        };
     this.sortByKey = this.sortByKey.bind(this);
     this.sortedData = this.sortedData.bind(this);
-      this.sortedData1 = this.sortedData1.bind(this);
     this.redirectToAddCoursePage = this.redirectToAddCoursePage.bind(this);
     this.handlePageClick=this.handlePageClick.bind(this);
     this.getPageCount=this.getPageCount.bind(this);
-
+    this.getViewList=this.getViewList.bind(this);
+    this.setTotalPages=this.setTotalPages.bind(this);
   }
+componentWillMount(){
+    debugger;
+    this.setTotalPages(this.props.courses);
+}
 
+componentWillReceiveProps(nextProps){
+    debugger;
+    this.setTotalPages(nextProps.courses);
+}
+getViewList(courses){
+    let currentPage = this.state.views.currentPage;
+    let total = this.state.views.totalPage;
+    return chunkify(courses,total)[currentPage];
+}
+
+setTotalPages(courses){
+  let total = this.getPageCount(courses);
+    debugger;
+    this.setState((prevState) => {
+    return {views:{
+       currentPage: prevState.views.currentPage,
+       totalPage:total
+    }
+    };
+  });
+}
 redirectToAddCoursePage() {
-  debugger;
      this.props.history.push('/course');
   }
 
-  sortedData() {
-         const { key, order } = this.state.sort;
-
-         // Only sort if key is provided & order != 0.
-         if (key && order) {
-             // Comparison function for "asc" sorting.
-             function compare(a, b) {
-                 if (a[key] < b[key]) return -1;
-                 if (a[key] > b[key]) return 1;
-                 return 0;
-             }
-
-             // Attention! Sort mutates array, clone first.
-             return [...this.props.courses].sort((a, b) => {
-                 // Interesting part. Sort in "asc" order. Flip if want "desc" order!
-                 return compare(a, b) * (order === 1 ? 1 : -1);
-             });
-         }
-
-         // Return original data (order = 0)
-         return this.props.courses;
-     }
-     sortedData1(data) {
+     sortedData(data) {
             const { key, order } = this.state.sort;
 
             // Only sort if key is provided & order != 0.
@@ -95,15 +97,14 @@ redirectToAddCoursePage() {
         }
 
         handlePageClick(data){
-            debugger;
-              const {courses} = this.props;
-        let selected = data.selected;
-        let rr =2;
-      let res =  chunkify(courses,rr)[selected];
-    let pag =  {d:res};
- this.setState({pag});
-          };
-
+        this.setState((prevState) => {
+        return {views:{
+           currentPage: data.selected,
+           totalPage:prevState.views.totalPage
+        }
+        };
+      });
+        }
           getPageCount(courses){
             debugger;
                 let count = courses.length;
@@ -114,10 +115,9 @@ redirectToAddCoursePage() {
 
             };
 
+
+
   render(){
-    const {courses} = this.props;
-    const es =this.state.pag.d;
-    debugger;
     return (
       <div>
          <h1>Videos</h1>
@@ -125,12 +125,12 @@ redirectToAddCoursePage() {
               value="Add Video"
               className="btn btn-primary"
               onClick={this.redirectToAddCoursePage}/>
-         <CourseList courses={this.sortedData1(this.state.pag.d)} sortByKey={this.sortByKey} sort={this.state.sort}/>
+         <CourseList courses={this.sortedData(this.getViewList(this.props.courses))} sortByKey={this.sortByKey} sort={this.state.sort}/>
          <ReactPaginate previousLabel={"previous"}
                       nextLabel={"next"}
                       breakLabel={<a href="">...</a>}
                       breakClassName={"break-me"}
-                      pageCount={this.getPageCount(courses)}
+                      pageCount={this.state.views.totalPage}
                       marginPagesDisplayed={1}
                       pageRangeDisplayed={3}
                       onPageChange={this.handlePageClick}

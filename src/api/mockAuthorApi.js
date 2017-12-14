@@ -19,6 +19,11 @@ const authors = [
   firstName: 'Sheep',
   lastName: 'Mr Suicide'
 },
+{
+  id: 'ZackHemsey',
+  firstName: 'Zack',
+  lastName: 'Hemsey'
+}
 ];
 
 //This would be performed on the server in a real app. Just stubbing in.
