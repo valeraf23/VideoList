@@ -115,24 +115,26 @@ redirectToAddCoursePage() {
             };
 
   render(){
+    const displauedCourses = this.sortedData(this.getViewList(this.props.courses));
+    const {views} = this.state;
     return (
-      <div>
+            <div>
          <h1>Videos</h1>
          <input type="submit"
               value="Add Video"
               className="btn btn-primary"
               onClick={this.redirectToAddCoursePage}/>
-         <CourseList courses={this.sortedData(this.getViewList(this.props.courses))} sortByKey={this.sortByKey} sort={this.state.sort}/>
+
+         <CourseList courses={displauedCourses} sortByKey={this.sortByKey} sort={this.state.sort}/>
          <ReactPaginate previousLabel={"previous"}
                       nextLabel={"next"}
                       breakLabel={<a href="">...</a>}
                       breakClassName={"break-me"}
-                      pageCount={this.state.views.totalPage}
+                      pageCount={views.totalPage}
                       marginPagesDisplayed={1}
                       pageRangeDisplayed={3}
                       onPageChange={this.handlePageClick}
-                      containerClassName={  (this.state.views.totalPage == 1 ? "pagination hidden" : "pagination" )}
-
+                      containerClassName={(views.totalPage == 1 ? "pagination hidden" : "pagination" )}
                       subContainerClassName={"pages pagination"}
                       forcePage={0}
                       activeClassName={"active"} />
