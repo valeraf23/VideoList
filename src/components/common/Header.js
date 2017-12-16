@@ -2,8 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {NavLink} from 'react-router-dom';
 import LoadingDots from './LoadingDots';
+import TotalCourses from './TotalCourses';
 
-const Header = ({loading}) => {
+const Header = ({loading, totalCourses}) => {
   const activeStyle = { color: 'blue' };
   debugger;
   return (
@@ -16,12 +17,16 @@ const Header = ({loading}) => {
       <NavLink to="/about" activeStyle={activeStyle}>About</NavLink>
       {loading && <LoadingDots interval={100} dots={20}/>}
     </nav>
+    {loading && <i className='fa fa-spinner fa-spin '> </i> }
+    {!loading && <TotalCourses totalCourses = {totalCourses}/>}
+
 </div>
   );
 };
 
 Header.propTypes = {
-  loading: PropTypes.bool.isRequired
+  loading: PropTypes.bool.isRequired,
+  totalCourses: PropTypes.bool.number
 };
 
 export default Header;
