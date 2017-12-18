@@ -6,7 +6,7 @@ import TotalCourses from './TotalCourses';
 
 const Header = ({loading, totalCourses}) => {
   const activeStyle = { color: 'blue' };
-  debugger;
+
   return (
     <div>
     <nav>
@@ -17,16 +17,17 @@ const Header = ({loading, totalCourses}) => {
       <NavLink to="/about" activeStyle={activeStyle}>About</NavLink>
       {loading && <LoadingDots interval={100} dots={20}/>}
     </nav>
-    {loading && <i className='fa fa-spinner fa-spin '> </i> }
+      <i className="text-left">
+    {loading && <i className="fa fa-spinner fa-spin " /> }
     {!loading && <TotalCourses totalCourses = {totalCourses}/>}
-
+      </i>
 </div>
   );
 };
 
 Header.propTypes = {
   loading: PropTypes.bool.isRequired,
-  totalCourses: PropTypes.bool.number
+  totalCourses: PropTypes.number.isRequired
 };
 
 export default Header;

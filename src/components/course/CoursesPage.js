@@ -9,9 +9,19 @@ import ReactPaginate from 'react-paginate';
 import {chunkify} from '../common/commonTools';
 
 class CoursesPage extends React.Component{
+
+  static getPageCount(courses){
+
+    const c=3;
+    let count = courses.length;
+    let a =  Math.floor(count/c);
+    let b  =count%c===0?0:1;
+    return a+b;
+  }
+
   constructor(props,context){
     super(props,context);
-      debugger;
+
     this.state = {
            sort: {
                key: undefined,
@@ -29,17 +39,18 @@ class CoursesPage extends React.Component{
     this.sortedData = this.sortedData.bind(this);
     this.redirectToAddCoursePage = this.redirectToAddCoursePage.bind(this);
     this.handlePageClick=this.handlePageClick.bind(this);
-    this.getPageCount=this.getPageCount.bind(this);
+    CoursesPage.getPageCount=CoursesPage.getPageCount.bind(this);
     this.getViewList=this.getViewList.bind(this);
     this.setTotalPages=this.setTotalPages.bind(this);
+    this.compare=this.compare.bind(this);
   }
 componentWillMount(){
-    debugger;
+
     this.setTotalPages(this.props.courses);
 }
 
 componentWillReceiveProps(nextProps){
-    debugger;
+
     this.setTotalPages(nextProps.courses);
 }
 getViewList(courses){
@@ -49,8 +60,8 @@ getViewList(courses){
 }
 
 setTotalPages(courses){
-  let total = this.getPageCount(courses);
-    debugger;
+  let total = CoursesPage.getPageCount(courses);
+
     this.setState((prevState) => {
     return {views:{
        currentPage: prevState.views.currentPage,
@@ -62,23 +73,22 @@ setTotalPages(courses){
 redirectToAddCoursePage() {
      this.props.history.push('/course');
   }
-
+  // Comparison function for "asc" sorting.
+   compare(a, b) {
+     const { key } = this.state.sort;
+    if (a[key] < b[key]) return -1;
+    if (a[key] > b[key]) return 1;
+    return 0;
+  }
      sortedData(data) {
             const { key, order } = this.state.sort;
 
             // Only sort if key is provided & order != 0.
             if (key && order) {
-                // Comparison function for "asc" sorting.
-                function compare(a, b) {
-                    if (a[key] < b[key]) return -1;
-                    if (a[key] > b[key]) return 1;
-                    return 0;
-                }
-
                 // Attention! Sort mutates array, clone first.
                 return [...data].sort((a, b) => {
                     // Interesting part. Sort in "asc" order. Flip if want "desc" order!
-                    return compare(a, b) * (order === 1 ? 1 : -1);
+                    return this.compare(a, b) * (order === 1 ? 1 : -1);
                 });
             }
 
@@ -93,7 +103,7 @@ redirectToAddCoursePage() {
                     // Key differs, start with "asc" order
                     : { key, order: 1 };
                 this.setState({ sort });
-            }
+            };
         }
 
         handlePageClick(data){
@@ -105,14 +115,6 @@ redirectToAddCoursePage() {
         };
       });
         }
-          getPageCount(courses){
-            debugger;
-                const c=3;
-                let count = courses.length;
-                let a =  Math.floor(count/c);
-                let b  =count%c==0?0:1;
-                   return a+b;
-            };
 
   render(){
     const displauedCourses = this.sortedData(this.getViewList(this.props.courses));
@@ -134,7 +136,7 @@ redirectToAddCoursePage() {
                       marginPagesDisplayed={1}
                       pageRangeDisplayed={3}
                       onPageChange={this.handlePageClick}
-                      containerClassName={(views.totalPage == 1 ? "pagination hidden" : "pagination" )}
+                      containerClassName={(views.totalPage === 1 ? "pagination hidden" : "pagination" )}
                       subContainerClassName={"pages pagination"}
                       forcePage={0}
                       activeClassName={"active"} />
@@ -151,13 +153,13 @@ CoursesPage.propTypes = {
 function sortCoursesList(list) {
 let newList = Object.assign([],list);
 newList.sort((a, b) => a.title.localeCompare(b.title));
-debugger;
+
 return newList;
 }
 
 
-function mapStateToProps(state,ownProps){
-debugger;
+function mapStateToProps(state){
+
   return {
      courses: sortCoursesList(state.courses)
   };

@@ -3,7 +3,7 @@ debugger;
     if (n < 2)
         return [a];
 
-    var len = a.length,
+    let len = a.length,
             out = [],
             i = 0,
             size;

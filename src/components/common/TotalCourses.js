@@ -4,14 +4,14 @@ import PropTypes from 'prop-types';
 const TotalCourses = ({totalCourses}) => {
 debugger;
   return (
-    <div>
+    <div className="bg-primary">
   TotalCourses: {totalCourses}
 </div>
   );
 };
 
 TotalCourses.propTypes = {
-  totalCourses: PropTypes.bool.number
+  totalCourses: PropTypes.number.isRequired
 };
 
 export default TotalCourses;

@@ -10,8 +10,7 @@ const Routes = () => (
 <div>
   <Switch history={createHistory}>
     <Route exact path="/" component={HomePage}/>
-    <Route path="/about" component={AboutPage}/>
-	  <Route path="/courses" component={CoursesPage}/>
+    <Route path="/about" component={AboutPage}/><Route path="/courses" component={CoursesPage}/>
     <Route exact path="/course" component={ManageCoursePage}/>
     <Route path="/course/:id" component={ManageCoursePage} />
   </Switch>

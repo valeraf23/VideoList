@@ -27,10 +27,10 @@ class App extends React.Component {
 
 App.propTypes = {
    loading: PropTypes.bool.isRequired,
-   match: PropTypes.object.isRequired
+   totalCourses: PropTypes.array.isRequired
 };
 
-function mapStateToProps(state,ownProps){
+function mapStateToProps(state){
       debugger;
   return {
     loading: state.ajaxCallsInProgress > 0,
