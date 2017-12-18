@@ -47,7 +47,9 @@ debugger;
 };
 
 CourseList.propTypes = {
-  courses: PropTypes.array.isRequired
+  courses: PropTypes.array.isRequired,
+  sortByKey: PropTypes.func.isRequired,
+  sort: PropTypes.object.isRequired
 };
 
 export default CourseList;

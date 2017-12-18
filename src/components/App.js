@@ -16,7 +16,7 @@ class App extends React.Component {
     debugger;
     return (
     <div className="container-fluid">
-    <Header loading={this.props.loading}/>
+    <Header loading={this.props.loading} totalCourses={this.props.totalCourses.length}/>
     <div className="container-fluid">
 				<Routes/>
 		</div>
@@ -27,13 +27,14 @@ class App extends React.Component {
 
 App.propTypes = {
    loading: PropTypes.bool.isRequired,
-   match: PropTypes.object.isRequired
+   totalCourses: PropTypes.array.isRequired
 };
 
-function mapStateToProps(state,ownProps){
+function mapStateToProps(state){
       debugger;
   return {
-    loading: state.ajaxCallsInProgress > 0
+    loading: state.ajaxCallsInProgress > 0,
+    totalCourses: state.courses
   };
 }
 

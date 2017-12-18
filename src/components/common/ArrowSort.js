@@ -3,14 +3,13 @@ import PropTypes from 'prop-types';
 
 
 const ArrowSort = ({sortByKey, keyId, sort, text}) => {
-    debugger;
+
   return (
     <div onClick={sortByKey(keyId)}>
       {text}
         <i
-          className={sort.order==2 ? 'fa fa-long-arrow-up' : 'fa fa-long-arrow-down'}
-          style={{visibility: keyId==sort.key  ? 'visible' : 'hidden' }}>
-        </i>
+          className={sort.order===2 ? 'fa fa-long-arrow-up' : 'fa fa-long-arrow-down'}
+          style={{visibility: keyId===sort.key  ? 'visible' : 'hidden' }} />
     </div>
   );
 };

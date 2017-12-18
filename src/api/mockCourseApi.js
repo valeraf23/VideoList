@@ -5,36 +5,36 @@ import delay from './delay';
 // All calls return promises.
 const courses = [
   {
-    id: "react-flux-building-applications",
-    title: "Building Applications in React and Flux",
-    watchHref: "http://www.pluralsight.com/courses/react-flux-building-applications",
-    authorId: "cory-house",
-    length: "5:08",
-    category: "JavaScript"
+    id: "memtrix-all-you-are",
+    title: "Memtrix - All You Are",
+    watchHref: "https://www.youtube.com/watch?v=LSxzzDE38t8",
+    authorId: "MrSuicideSheep",
+    length: "5:26",
+    category: "Music"
   },
   {
-    id: "clean-code",
-    title: "Clean Code: Writing Code for Humans",
-    watchHref: "http://www.pluralsight.com/courses/writing-clean-code-humans",
-    authorId: "cory-house",
-    length: "3:10",
-    category: "Software Practices"
+    id: "needed-you",
+    title: "Illenium - Needed You (feat. Dia Frampton)",
+    watchHref: "https://www.youtube.com/watch?v=96lCUfORlOo",
+    authorId: "MrSuicideSheep",
+    length: "5:05",
+    category: "Music"
   },
   {
-    id: "architecture",
-    title: "Architecting Applications for the Real World",
-    watchHref: "http://www.pluralsight.com/courses/architecting-applications-dotnet",
-    authorId: "cory-house",
-    length: "2:52",
-    category: "Software Architecture"
+    id: "illenium-lost",
+    title: "Illenium - Lost (ft. Emilie Brandt)",
+    watchHref: "https://www.youtube.com/watch?v=S_5IMBT5Elw",
+    authorId: "MrSuicideSheep",
+    length: "3:20",
+    category: "Music"
   },
   {
-    id: "career-reboot-for-developer-mind",
-    title: "Becoming an Outlier: Reprogramming the Developer Mind",
-    watchHref: "http://www.pluralsight.com/courses/career-reboot-for-developer-mind",
-    authorId: "cory-house",
-    length: "2:30",
-    category: "Career"
+    id: "the-way",
+    title: "Zack Hemsey - `The Way`",
+    watchHref: "https://www.youtube.com/watch?v=Nco7qfrPG7I",
+    authorId: "ZackHemsey",
+    length: "7:05",
+    category: "Music"
   },
   {
     id: "web-components-shadow-dom",
@@ -43,6 +43,14 @@ const courses = [
     authorId: "cory-house",
     length: "5:10",
     category: "HTML5"
+  },
+  {
+    id: "end-of-an-era",
+    title: "Zack Hemsey - `End Of An Era (Our Humanity)`",
+    watchHref: "https://www.youtube.com/watch?v=ayOJAH2ej5I",
+    authorId: "ZackHemsey",
+    length: "1:40",
+    category: "Music"
   }
 ];
 
