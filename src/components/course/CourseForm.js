@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import TextInput from '../common/TextInput';
 import SelectInput from '../common/SelectInput';
 
-const CourseForm = ({course, allAuthors, onSave, onChange, saving, errors}) => {
+const CourseForm = ({course, allAuthors, onSave, onChange, saving, errors,onDelete}) => {
   return (
     <form>
       <h1>Manage Course</h1>
@@ -44,11 +44,18 @@ const CourseForm = ({course, allAuthors, onSave, onChange, saving, errors}) => {
         error={errors.length}/>
 
       <input
+      type="submit"
+      disabled={saving}
+      value={saving ? 'Saving...' : 'Save'}
+      className="btn btn-primary"
+      onClick={onSave}/>
+
+      <input
         type="submit"
         disabled={saving}
-        value={saving ? 'Saving...' : 'Save'}
+        value={saving ? 'Delete..' : 'Delete'}
         className="btn btn-primary"
-        onClick={onSave}/>
+        onClick={onDelete}/>
     </form>
   );
 };

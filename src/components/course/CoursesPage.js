@@ -117,7 +117,7 @@ redirectToAddCoursePage() {
         }
 
   render(){
-    const displauedCourses = this.sortedData(this.getViewList(this.props.courses));
+    const displayedCourses = this.sortedData(this.getViewList(this.props.courses));
     const {views} = this.state;
     return (
             <div>
@@ -127,7 +127,7 @@ redirectToAddCoursePage() {
               className="btn btn-primary"
               onClick={this.redirectToAddCoursePage}/>
 
-         <CourseList courses={displauedCourses} sortByKey={this.sortByKey} sort={this.state.sort}/>
+         <CourseList courses={displayedCourses} sortByKey={this.sortByKey} sort={this.state.sort}/>
          <ReactPaginate previousLabel={"previous"}
                       nextLabel={"next"}
                       breakLabel={<a href="">...</a>}

@@ -22,9 +22,11 @@ export class ManageCoursePage extends React.Component {
 
     this.saveCourse = this.saveCourse.bind(this);
     this.updateCourseState = this.updateCourseState.bind(this);
+    this.deleteCourse = this.deleteCourse.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
+    debugger;
     if (this.props.course.id !== nextProps.course.id) {
       // Necessary to populate form when existing course is loaded directly.
       this.setState({course: Object.assign({}, nextProps.course)});
@@ -67,6 +69,19 @@ export class ManageCoursePage extends React.Component {
       });
   }
 
+  deleteCourse(event) {
+    event.preventDefault();
+debugger;
+
+    this.setState({saving: true});
+    this.props.actions.deleteCourse(this.state.course.id)
+      .then(() => this.redirect())
+      .catch(error => {
+        toastr.error(error);
+        this.setState({saving: false});
+      });
+  }
+
   redirect() {
     this.setState({saving: false, redirect: true,dirty:false});
     toastr.success('Course saved.');
@@ -87,6 +102,7 @@ export class ManageCoursePage extends React.Component {
         errors={this.state.errors}
         allAuthors={this.props.authors}
         saving={this.state.saving}
+        onDelete={this.deleteCourse}
       />
       </div>
     );
@@ -102,16 +118,16 @@ ManageCoursePage.propTypes = {
 
 function getCourseById(courses, id) {
   const course = courses.filter(course => course.id === id);
-  if (course) return course[0]; //since filter returns an array, have to grab the first.
+   if (course) return course[0]; //since filter returns an array, have to grab the first.
   return null;
 }
 
 function mapStateToProps(state, ownProps) {
   const courseId = ownProps.match.params.id; // from the path `/course/:id`
-
+debugger;
   let course = {id: '', watchHref: '', title: '', authorId: '', length: '', category: ''};
 
-  if (courseId && state.courses.length > 0) {
+  if (state.courses.findIndex(x => x.id==courseId) > 0) {
     course = getCourseById(state.courses, courseId);
   }
 
