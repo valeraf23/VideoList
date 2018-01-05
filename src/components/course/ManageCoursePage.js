@@ -16,6 +16,7 @@ export class ManageCoursePage extends React.Component {
       course: Object.assign({}, this.props.course),
       errors: {},
       saving: false,
+      deleting:false,
       redirect: false,
       dirty: false
     };
@@ -73,18 +74,22 @@ export class ManageCoursePage extends React.Component {
     event.preventDefault();
 debugger;
 
-    this.setState({saving: true});
+    this.setState({deleting: true});
     this.props.actions.deleteCourse(this.state.course.id)
       .then(() => this.redirect())
       .catch(error => {
         toastr.error(error);
-        this.setState({saving: false});
+        this.setState({deleting: false});
       });
   }
 
   redirect() {
-    this.setState({saving: false, redirect: true,dirty:false});
-    toastr.success('Course saved.');
+    let msg ;
+    debugger;
+    if(this.state.saving){msg='Video saved.'}
+    if(this.state.deleting){msg='Video deleted.'}
+    this.setState({saving: false,deleting:false, redirect: true,dirty:false});
+    toastr.success(msg);
   }
 
   render() {
@@ -103,6 +108,7 @@ debugger;
         allAuthors={this.props.authors}
         saving={this.state.saving}
         onDelete={this.deleteCourse}
+        deleting={this.state.deleting}
       />
       </div>
     );
