@@ -16,7 +16,7 @@ export class ManageCoursePage extends React.Component {
       course: Object.assign({}, this.props.course),
       errors: {},
       saving: false,
-      deleting:false,
+      deleting: false,
       redirect: false,
       dirty: false
     };
@@ -38,7 +38,7 @@ export class ManageCoursePage extends React.Component {
     const field = event.target.name;
     let course = this.state.course;
     course[field] = event.target.value;
-    return this.setState({course: course,dirty:true});
+    return this.setState({course: course, dirty: true});
   }
 
   courseFormIsValid() {
@@ -72,7 +72,7 @@ export class ManageCoursePage extends React.Component {
 
   deleteCourse(event) {
     event.preventDefault();
-debugger;
+    debugger;
 
     this.setState({deleting: true});
     this.props.actions.deleteCourse(this.state.course.id)
@@ -84,32 +84,36 @@ debugger;
   }
 
   redirect() {
-    let msg ;
+    let msg;
     debugger;
-    if(this.state.saving){msg='Video saved.'}
-    if(this.state.deleting){msg='Video deleted.'}
-    this.setState({saving: false,deleting:false, redirect: true,dirty:false});
+    if (this.state.saving) {
+      msg = 'Video saved.'
+    }
+    if (this.state.deleting) {
+      msg = 'Video deleted.'
+    }
+    this.setState({saving: false, deleting: false, redirect: true, dirty: false});
     toastr.success(msg);
   }
 
   render() {
     if (this.state.redirect) {
-      return <Redirect to="/courses" />;
+      return <Redirect to="/courses"/>;
     }
 
     return (
       <div>
-      <Prompt when={this.state.dirty} message={"You have unsaved changes." +"\n"+ "Are you sure?"}/>
-      <CourseForm
-        course={this.state.course}
-        onChange={this.updateCourseState}
-        onSave={this.saveCourse}
-        errors={this.state.errors}
-        allAuthors={this.props.authors}
-        saving={this.state.saving}
-        onDelete={this.deleteCourse}
-        deleting={this.state.deleting}
-      />
+        <Prompt when={this.state.dirty} message={"You have unsaved changes." + "\n" + "Are you sure?"}/>
+        <CourseForm
+          course={this.state.course}
+          onChange={this.updateCourseState}
+          onSave={this.saveCourse}
+          errors={this.state.errors}
+          allAuthors={this.props.authors}
+          saving={this.state.saving}
+          onDelete={this.deleteCourse}
+          deleting={this.state.deleting}
+        />
       </div>
     );
   }
@@ -124,16 +128,16 @@ ManageCoursePage.propTypes = {
 
 function getCourseById(courses, id) {
   const course = courses.filter(course => course.id === id);
-   if (course) return course[0]; //since filter returns an array, have to grab the first.
+  if (course) return course[0]; //since filter returns an array, have to grab the first.
   return null;
 }
 
 function mapStateToProps(state, ownProps) {
   const courseId = ownProps.match.params.id; // from the path `/course/:id`
-debugger;
+  debugger;
   let course = {id: '', watchHref: '', title: '', authorId: '', length: '', category: ''};
 
-  if (state.courses.findIndex(x => x.id==courseId) > 0) {
+  if (state.courses.findIndex(x => x.id == courseId) > 0) {
     course = getCourseById(state.courses, courseId);
   }
 

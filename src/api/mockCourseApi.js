@@ -89,7 +89,6 @@ class CourseApi {
           //The server would generate ids and watchHref's for new courses in a real app.
           //Cloning so copy returned is passed by value rather than by reference.
           course.id = generateId(course);
-          //course.watchHref = `http://www.pluralsight.com/courses/${course.id}`;
           courses.push(course);
         }
 
@@ -104,7 +103,7 @@ class CourseApi {
         const indexOfCourseToDelete =courses.findIndex(x => x.id==courseId);
         debugger;
         courses.splice(indexOfCourseToDelete, 1);
-        resolve(indexOfCourseToDelete);
+        resolve(courseId);
       }, delay);
     });
   }

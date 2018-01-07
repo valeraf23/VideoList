@@ -15,12 +15,12 @@ class App extends React.Component {
   render() {
     debugger;
     return (
-    <div className="container-fluid">
-    <Header loading={this.props.loading} totalCourses={this.props.totalCourses.length}/>
-    <div className="container-fluid">
-				<Routes/>
-		</div>
-    </div>
+      <div className="container-fluid">
+        <Header loading={this.props.loading} totalCourses={this.props.totalCourses.length}/>
+        <div className="container-fluid">
+          <Routes/>
+        </div>
+      </div>
     );
   }
 }

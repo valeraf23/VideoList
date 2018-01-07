@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import ArrowSort from '../common/ArrowSort';
 
 const CourseList = ({courses,sortByKey,sort}) => {
-debugger;
+  debugger;
   return (
     <table className="table">
       <thead>
@@ -12,28 +12,28 @@ debugger;
         <th>&nbsp;</th>
         <th>Title</th>
         <th>
-            <ArrowSort
-              sortByKey={sortByKey}
-              keyId={"authorId"}
-              sort={sort}
-              text={'Author'}
-              />
+          <ArrowSort
+            sortByKey={sortByKey}
+            keyId={"authorId"}
+            sort={sort}
+            text={'Author'}
+          />
         </th>
         <th>
-            <ArrowSort
-              sortByKey={sortByKey}
-              keyId={"category"}
-              sort={sort}
-              text={'Category'}
-              />
-         </th>
+          <ArrowSort
+            sortByKey={sortByKey}
+            keyId={"category"}
+            sort={sort}
+            text={'Category'}
+          />
+        </th>
         <th>
-            <ArrowSort
-              sortByKey={sortByKey}
-              keyId={"length"}
-              sort={sort}
-              text={'Length'}
-              />
+          <ArrowSort
+            sortByKey={sortByKey}
+            keyId={"length"}
+            sort={sort}
+            text={'Length'}
+          />
         </th>
       </tr>
       </thead>

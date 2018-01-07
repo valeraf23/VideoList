@@ -15,14 +15,14 @@ export function updateCourseSuccess(course) {
   return {type: types.UPDATE_COURSE_SUCCESS, course};
 }
 
-export function deleteCourseSuccess(index) {
-  return {type: types.DELETE_COURSE_SUCCESS, index};
+export function deleteCourseSuccess(courseId) {
+  return {type: types.DELETE_COURSE_SUCCESS, courseId};
 }
 
-export function loadCourses(){
-  return function(dispatch){
-     dispatch(beginAjaxCall());
-    return CourseApi.getAllCourses().then(courses=>{
+export function loadCourses() {
+  return function (dispatch) {
+    dispatch(beginAjaxCall());
+    return CourseApi.getAllCourses().then(courses => {
       dispatch(loadCoursesSuccess(courses));
     }).catch(error => {
       throw(error);
@@ -33,11 +33,11 @@ export function loadCourses(){
 export function saveCourse(course) {
   return function (dispatch, getState) {
     debugger;
-     dispatch(beginAjaxCall());
-        return CourseApi.saveCourse(course).then(course => {
+    dispatch(beginAjaxCall());
+    return CourseApi.saveCourse(course).then(course => {
       course.id ? dispatch(updateCourseSuccess(course)) : dispatch(createCourseSuccess(course));
     }).catch(error => {
-       dispatch(ajaxCallError(error));
+      dispatch(ajaxCallError(error));
       throw(error);
     });
   };
@@ -50,7 +50,8 @@ export function deleteCourse(courseId) {
     debugger;
     dispatch(beginAjaxCall());
     debugger;
-    return CourseApi.deleteCourse(courseId).then(index => { dispatch(deleteCourseSuccess(index));
+    return CourseApi.deleteCourse(courseId).then(index => {
+      dispatch(deleteCourseSuccess(index));
     }).catch(error => {
       dispatch(ajaxCallError(error));
       throw(error);
