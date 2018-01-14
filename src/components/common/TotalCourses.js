@@ -5,7 +5,7 @@ const TotalCourses = ({totalCourses}) => {
 
   return (
     <div className="bg-primary">
-  TotalCourses: {totalCourses}
+  TotalVideos: {totalCourses}
 </div>
   );
 };
