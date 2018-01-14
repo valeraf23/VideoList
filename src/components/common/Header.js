@@ -19,7 +19,7 @@ const Header = ({loading, totalCourses}) => {
       </nav>
       <i className="text-left">
         {loading && <i className="fa fa-spinner fa-spin "/>}
-        {!loading && <TotalCourses totalCourses={totalCourses}/>}
+        {!loading && <TotalVideos totalCourses={totalCourses}/>}
       </i>
     </div>
   );
