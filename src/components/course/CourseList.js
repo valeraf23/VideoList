@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import ArrowSort from '../common/ArrowSort';
 
 const CourseList = ({courses,sortByKey,sort}) => {
-  debugger;
+
   return (
     <table className="table">
       <thead>

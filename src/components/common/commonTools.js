@@ -1,5 +1,5 @@
 export function chunkify(a, n, balanced) {
-  debugger;
+
   if (n < 2)
     return [a];
 

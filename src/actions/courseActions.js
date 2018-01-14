@@ -3,7 +3,6 @@ import CourseApi from '../api/mockCourseApi';
 import {beginAjaxCall,ajaxCallError} from './ajaxStatusActions';
 
 export function loadCoursesSuccess(courses){
-  debugger;
   return {type: types.LOAD_COURSES_SUCCESS ,courses};
 }
 
@@ -31,8 +30,8 @@ export function loadCourses() {
 }
 
 export function saveCourse(course) {
-  return function (dispatch, getState) {
-    debugger;
+  return function (dispatch) {
+
     dispatch(beginAjaxCall());
     return CourseApi.saveCourse(course).then(course => {
       course.id ? dispatch(updateCourseSuccess(course)) : dispatch(createCourseSuccess(course));
@@ -46,10 +45,10 @@ export function saveCourse(course) {
 
 
 export function deleteCourse(courseId) {
-  return function (dispatch, getState) {
-    debugger;
+  return function (dispatch) {
+
     dispatch(beginAjaxCall());
-    debugger;
+
     return CourseApi.deleteCourse(courseId).then(index => {
       dispatch(deleteCourseSuccess(index));
     }).catch(error => {

@@ -27,7 +27,7 @@ export class ManageCoursePage extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    debugger;
+
     if (this.props.course.id !== nextProps.course.id) {
       // Necessary to populate form when existing course is loaded directly.
       this.setState({course: Object.assign({}, nextProps.course)});
@@ -72,7 +72,7 @@ export class ManageCoursePage extends React.Component {
 
   deleteCourse(event) {
     event.preventDefault();
-    debugger;
+
 
     this.setState({deleting: true});
     this.props.actions.deleteCourse(this.state.course.id)
@@ -85,12 +85,12 @@ export class ManageCoursePage extends React.Component {
 
   redirect() {
     let msg;
-    debugger;
+
     if (this.state.saving) {
-      msg = 'Video saved.'
+      msg = 'Video saved.';
     }
     if (this.state.deleting) {
-      msg = 'Video deleted.'
+      msg = 'Video deleted.';
     }
     this.setState({saving: false, deleting: false, redirect: true, dirty: false});
     toastr.success(msg);
@@ -136,10 +136,10 @@ function getCourseById(courses, id) {
 
 function mapStateToProps(state, ownProps) {
   const courseId = ownProps.match.params.id; // from the path `/course/:id`
-  debugger;
+
   let course = {id: '', watchHref: '', title: '', authorId: '', length: '', category: ''};
 
-  if (state.courses.findIndex(x => x.id == courseId) > 0) {
+  if (state.courses.findIndex(x => x.id === courseId) > 0) {
     course = getCourseById(state.courses, courseId);
   }
 

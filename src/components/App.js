@@ -13,7 +13,7 @@ import {withRouter} from 'react-router-dom';
 
 class App extends React.Component {
   render() {
-    debugger;
+
     return (
       <div className="container-fluid">
         <Header loading={this.props.loading} totalCourses={this.props.totalCourses.length}/>
@@ -31,7 +31,7 @@ App.propTypes = {
 };
 
 function mapStateToProps(state){
-      debugger;
+
   return {
     loading: state.ajaxCallsInProgress > 0,
     totalCourses: state.courses
