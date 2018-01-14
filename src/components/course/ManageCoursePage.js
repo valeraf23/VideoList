@@ -114,6 +114,7 @@ export class ManageCoursePage extends React.Component {
           onDelete={this.deleteCourse}
           deleting={this.state.deleting}
           dirty = {this.state.dirty}
+          isCanDelete={!this.state.course.id}
         />
       </div>
     );
