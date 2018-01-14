@@ -113,6 +113,7 @@ export class ManageCoursePage extends React.Component {
           saving={this.state.saving}
           onDelete={this.deleteCourse}
           deleting={this.state.deleting}
+          dirty = {this.state.dirty}
         />
       </div>
     );
