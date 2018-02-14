@@ -8,7 +8,7 @@ import CourseList from './CourseList';
 import ReactPaginate from 'react-paginate';
 import {chunkify} from '../common/commonTools';
 
-class CoursesPage extends React.Component {
+class CoursesPage extends React.PureComponent {
 
   static getPageCount(courses) {
 
@@ -48,6 +48,10 @@ class CoursesPage extends React.Component {
   componentWillMount() {
 
     this.setTotalPages(this.props.courses);
+  }
+
+  componentWillUpdate(nextProps, nextState){
+    console.log("CoursesPage Mounted")
   }
 
   componentWillReceiveProps(nextProps) {

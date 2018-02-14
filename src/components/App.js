@@ -11,9 +11,9 @@ import {withRouter} from 'react-router-dom';
 // version of hot reloading won't hot reload a stateless
 // component at the top-level.
 
-class App extends React.Component {
-  render() {
+class App extends React.PureComponent {
 
+  render() {
     return (
       <div className="container-fluid">
         <Header loading={this.props.loading} totalCourses={this.props.totalCourses.length}/>

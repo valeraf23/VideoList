@@ -8,7 +8,7 @@ import CourseForm from './CourseForm';
 import {authorsFormattedForDropdown} from '../../selectors/selectors';
 import toastr from 'toastr';
 
-export class ManageCoursePage extends React.Component {
+export class ManageCoursePage extends React.PureComponent {
   constructor(props, context) {
     super(props, context);
 
@@ -24,6 +24,10 @@ export class ManageCoursePage extends React.Component {
     this.saveCourse = this.saveCourse.bind(this);
     this.updateCourseState = this.updateCourseState.bind(this);
     this.deleteCourse = this.deleteCourse.bind(this);
+  }
+
+  componentWillUpdate(nextProps, nextState){
+    console.log("ManageCoursePage Mounted")
   }
 
   componentWillReceiveProps(nextProps) {

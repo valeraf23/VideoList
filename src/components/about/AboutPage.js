@@ -1,6 +1,11 @@
 import React from 'react';
 
 class AboutPage extends React.Component {
+
+  shouldComponentUpdate(nextProps, nextState){
+    return false;
+  }
+
   render() {
     return (
       <div>

@@ -3,6 +3,10 @@ import { Link } from 'react-router-dom';
 
 class HomePage extends React.Component{
 
+  shouldComponentUpdate(nextProps, nextState){
+    return false;
+  }
+
 render(){
   return (
     <div className ="jumbotron">
